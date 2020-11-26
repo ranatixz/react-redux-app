@@ -25,14 +25,12 @@ export const fetchUsersRequestFailure = error => {
     };
 };
 
-export const fetchUsers = () => {
-    return dispatch => {
-        dispatch(fetchUsersRequest());
-        axios
-            .get("https://jsonplaceholder.typicode.com/users")
-            .then(res => {
-                dispatch(fetchUsersRequestSuccessful(res.data));
-            })
-            .catch(err => dispatch(fetchUsersRequestFailure(err.message)));
-    };
+export const fetchUsers = () => dispatch => {
+    dispatch(fetchUsersRequest());
+    axios
+        .get("https://jsonplaceholder.typicode.com/users")
+        .then(res => {
+            dispatch(fetchUsersRequestSuccessful(res.data));
+        })
+        .catch(err => dispatch(fetchUsersRequestFailure(err.message)));
 };

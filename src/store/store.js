@@ -1,14 +1,14 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducer from '../reducers/rootReducer';
-import logger from 'redux-logger';
-import thunk from 'redux-thunk';
+import {createStore, applyMiddleware} from "redux";
+import {composeWithDevTools} from "redux-devtools-extension";
+import rootReducer from "../reducers/rootReducer";
+import logger from "redux-logger";
+import thunk from "redux-thunk";
 
 const middleware = [logger, thunk];
 
 const store = createStore(
-    rootReducer,
-    compose(applyMiddleware(...middleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+	rootReducer,
+	composeWithDevTools(applyMiddleware(...middleware))
 );
 
 export default store;
